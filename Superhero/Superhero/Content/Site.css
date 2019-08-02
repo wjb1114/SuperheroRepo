@@ -42,3 +42,7 @@ img {
     height: 20%;
     border-radius: 50%;
 }
+
+@font-face {
+    font-family: 'Lato';
+}
