@@ -29,3 +29,17 @@ tr,
 td {
     padding: 20px;
 }
+
+img {
+
+}
+
+.table-name-space {
+    padding-right: 150px;
+}
+
+.home-page-image {
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+}
