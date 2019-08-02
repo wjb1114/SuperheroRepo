@@ -91,9 +91,10 @@ namespace Superhero.Controllers
         [HttpPost]
         public ActionResult Delete(Hero hero)
         {
+            Hero foundHero = db.Heroes.Where(h => h.HeroId == hero.HeroId).Single();
             try
             {
-                db.Heroes.Remove(hero);
+                db.Heroes.Remove(foundHero);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
