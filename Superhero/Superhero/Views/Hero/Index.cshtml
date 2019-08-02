@@ -9,25 +9,15 @@
     <table>
         <tr>
             <td>Name</td>
-            <td>Alter Ego</td>
-            <td>Primary Ability</td>
-            <td>Secondary Ability</td>
-            <td>Catchphrase</td>
-            <td>Details</td>
             <td>Update Information</td>
             <td>Delete</td>
         </tr>
         @for(int i = 0; i < Model.Count; i++)
         {
         <tr>
-            <td>@Model[i].Name</td>
-            <td>@Model[i].AlterEgo</td>
-            <td>@Model[i].PrimaryAbility</td>
-            <td>@Model[i].SecondaryAbility</td>
-            <td>@Model[i].Catchphrase</td>
-            <td>@Html.ActionLink("Read", "Read", Model[i])</td>
-            <td>@Html.ActionLink("Update", "Update", Model[i])</td>
-            <td>@Html.ActionLink("Delete", "Delete", Model[i])</td>
+            <td>@Html.ActionLink(Model[i].Name, "Read", new { id = Model[i].HeroId })</td>
+            <td>@Html.ActionLink("Update", "Update", new { id = Model[i].HeroId })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = Model[i].HeroId })</td>
         </tr>
 
         }

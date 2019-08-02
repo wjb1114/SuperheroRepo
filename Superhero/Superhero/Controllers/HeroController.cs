@@ -21,8 +21,9 @@ namespace Superhero.Controllers
         }
 
         // GET: Hero/Details/5
-        public ActionResult Read(Hero hero)
+        public ActionResult Read(int id)
         {
+            Hero hero = db.Heroes.Where(h => h.HeroId == id).Single();
             return View(hero);
         }
 
@@ -41,7 +42,7 @@ namespace Superhero.Controllers
                 db.Heroes.Add(hero);
                 db.SaveChanges();
 
-                return RedirectToAction("Read");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -52,16 +53,24 @@ namespace Superhero.Controllers
         // GET: Hero/Edit/5
         public ActionResult Update(int id)
         {
-            return View();
+            Hero hero = db.Heroes.Where(h => h.HeroId == id).Single();
+            return View(hero);
         }
 
         // POST: Hero/Edit/5
         [HttpPost]
-        public ActionResult Update(int id, FormCollection collection)
+        public ActionResult Update(Hero hero)
         {
+            Hero foundHero = db.Heroes.Where(h => h.HeroId == hero.HeroId).Single();
             try
             {
-                // TODO: Add update logic here
+                foundHero.Name = hero.Name;
+                foundHero.AlterEgo = hero.AlterEgo;
+                foundHero.PrimaryAbility = hero.PrimaryAbility;
+                foundHero.SecondaryAbility = hero.SecondaryAbility;
+                foundHero.Catchphrase = hero.Catchphrase;
+
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -74,16 +83,18 @@ namespace Superhero.Controllers
         // GET: Hero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Hero hero = db.Heroes.Where(h => h.HeroId == id).Single();
+            return View(hero);
         }
 
         // POST: Hero/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Hero hero)
         {
             try
             {
-                // TODO: Add delete logic here
+                db.Heroes.Remove(hero);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
