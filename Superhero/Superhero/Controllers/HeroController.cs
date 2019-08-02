@@ -17,13 +17,13 @@ namespace Superhero.Controllers
 		}
         public ActionResult Index()
         {
-            return View("Read");
+            return View(db.Heroes.ToList());
         }
 
         // GET: Hero/Details/5
-        public ActionResult Read(int id)
+        public ActionResult Read(Hero hero)
         {
-            return View();
+            return View(hero);
         }
 
         // GET: Hero/Create
